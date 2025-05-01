@@ -1,0 +1,4 @@
+*.csv
+*.bin
+*.h5
+venv/
