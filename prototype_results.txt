@@ -1,0 +1,66 @@
+Chatbot Accuracy: 100.00% (12/12 correct)
+
+Chatbot Test Cases:
+Query: What’s the cheapest flight to Lagos?
+Predicted: price_inquiry
+Expected: price_inquiry
+Correct: True
+
+Query: Can I cancel my booking to Abuja?
+Predicted: cancellation
+Expected: cancellation
+Correct: True
+
+Query: Check status of my flight to London
+Predicted: flight_status
+Expected: flight_status
+Correct: True
+
+Query: Baggage rules for Accra flight
+Predicted: baggage
+Expected: baggage
+Correct: True
+
+Query: Use my miles for a ticket to Paris
+Predicted: loyalty
+Expected: loyalty
+Correct: True
+
+Query: Refund for my New York flight
+Predicted: refunds
+Expected: refunds
+Correct: True
+
+Query: Check-in for Lagos flight
+Predicted: check_in
+Expected: check_in
+Correct: True
+
+Query: Vegetarian meal for my flight
+Predicted: special_requests
+Expected: special_requests
+Correct: True
+
+Query: What’s the weather in Accra?
+Predicted: other
+Expected: other
+Correct: True
+
+Query: Change my flight to London
+Predicted: booking_change
+Expected: booking_change
+Correct: True
+
+Query: How much is a flght to Abuja?
+Predicted: price_inquiry
+Expected: price_inquiry
+Correct: True
+
+Query: Please cancel my Paris booking
+Predicted: cancellation
+Expected: cancellation
+Correct: True
+
+Pricing Mean Absolute Error: $38.37
+Average Price: $326.18
+MAE as Percentage of Average Price: 11.76%
