@@ -1,0 +1,3 @@
+Mean Absolute Error: $38.37
+Average Price: $326.18
+MAE as Percentage of Average Price: 11.76%
