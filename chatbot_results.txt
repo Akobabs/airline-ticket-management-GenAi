@@ -1,0 +1,11 @@
+Chatbot Accuracy: 100.0%
+Query: What’s the cheapest flight to Lagos?, Predicted: price_inquiry, Expected: price_inquiry
+Query: Can I cancel my booking to Abuja?, Predicted: cancellation, Expected: cancellation
+Query: Check status of my flight to London, Predicted: flight_status, Expected: flight_status
+Query: Baggage rules for Accra flight, Predicted: baggage, Expected: baggage
+Query: Use my miles for a ticket to Paris, Predicted: loyalty, Expected: loyalty
+Query: Refund for my New York flight, Predicted: refunds, Expected: refunds
+Query: Check-in for Lagos flight, Predicted: check_in, Expected: check_in
+Query: Vegetarian meal for my flight, Predicted: special_requests, Expected: special_requests
+Query: What’s the weather in Accra?, Predicted: other, Expected: other
+Query: Change my flight to London, Predicted: booking_change, Expected: booking_change
