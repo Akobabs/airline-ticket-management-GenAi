@@ -3,15 +3,15 @@ import torch
 from transformers import DistilBertTokenizer, DistilBertForSequenceClassification, Trainer, TrainingArguments
 from torch.utils.data import Dataset
 
-# Load data
+# Load processed data
 data = pd.read_csv("processed_queries.csv")
 queries, labels = data["query"], data["category_code"]
 
-# Tokenize
+# Tokenize queries
 tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
 encodings = tokenizer(list(queries), truncation=True, padding=True)
 
-# Custom dataset
+# Create custom dataset
 class QueryDataset(Dataset):
     def __init__(self, encodings, labels):
         self.encodings = encodings
@@ -28,20 +28,30 @@ dataset = QueryDataset(encodings, labels)
 # Load model
 model = DistilBertForSequenceClassification.from_pretrained("distilbert-base-uncased", num_labels=len(set(labels)))
 
-# Training arguments
+# Define training arguments
 training_args = TrainingArguments(
     output_dir="./results",
     num_train_epochs=3,
-    per_device_train_batch_size=4,  # Small batch for low RAM
+    per_device_train_batch_size=4,
+    per_device_eval_batch_size=4,
+    warmup_steps=100,
+    weight_decay=0.01,
     logging_dir="./logs",
     logging_steps=10,
+    save_strategy="no",
 )
 
-# Train
-trainer = Trainer(model=model, args=training_args, train_dataset=dataset)
+# Initialize trainer
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=dataset,
+)
+
+# Train model
 trainer.train()
 
-# Save model
-model.save_pretrained("chatbot_model")
+# Save model and tokenizer (force PyTorch format)
+model.save_pretrained("chatbot_model", safe_serialization=False)
 tokenizer.save_pretrained("chatbot_model")
-print("Saved chatbot model")
+print("Saved chatbot model to 'chatbot_model/'")
