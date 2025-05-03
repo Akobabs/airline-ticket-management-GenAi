@@ -67,6 +67,44 @@ airline-ticket-ai/
 
 ---
 
+## 🚀 Deployment Steps
+
+Follow the steps below to generate data, train models, and run the app locally or on a remote server like Streamlit Cloud or Google Colab.
+
+### 🧾 1. Generate Synthetic Data
+
+Run the following scripts to generate and preprocess both query and pricing datasets:
+
+```bash
+python create_queries.py
+python create_prices.py
+python preprocess_data.py
+```
+
+✅ These scripts will generate the following files:
+
+- `processed_queries.csv` – 1,000 synthetic airline-related queries  
+- `processed_prices.csv` – 1,000 rows of flight fare data  
+- `category_map.csv` – Maps category names to numeric labels for classification  
+
+---
+
+### 🧠 2. Train the Chatbot Classifier
+
+Train the DistilBERT-based intent classification model:
+
+```bash
+python train_chatbot.py
+```
+
+✅ This script will create a `chatbot_model/` directory containing:
+
+- Fine-tuned DistilBERT model weights
+- Tokenizer configuration
+- Training metrics/logs (if enabled)
+
+---
+
 ## 🧪 Getting Started
 
 ### 1. Clone the repository
