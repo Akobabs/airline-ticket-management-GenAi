@@ -1,22 +1,25 @@
 import streamlit as st
 import torch
-from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
 import joblib
 import pandas as pd
 import numpy as np
 import re
 import os
 
-# Check model files exist
+# Check model files
 model_path = "chatbot_model"
-if not all(os.path.exists(os.path.join(model_path, f)) for f in ["config.json", "pytorch_model.bin", "vocab.txt"]):
-    st.error("Chatbot model files missing in 'chatbot_model/'. Please run 'train_chatbot.py'.")
+required_files = ["config.json", "vocab.txt"]
+weight_files = ["pytorch_model.bin", "model.safetensors"]
+if not all(os.path.exists(os.path.join(model_path, f)) for f in required_files) or not any(os.path.exists(os.path.join(model_path, f)) for f in weight_files):
+    st.error("Chatbot model files missing in 'chatbot_model/' (requires config.json, vocab.txt, and either pytorch_model.bin or model.safetensors). Please run 'train_chatbot.py'.")
     st.stop()
 
 # Load models and category map
 @st.cache_resource
 def load_chatbot_model():
     try:
+        from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
+        import torch
         tokenizer = DistilBertTokenizer.from_pretrained(model_path)
         model = DistilBertForSequenceClassification.from_pretrained(model_path)
         return tokenizer, model
